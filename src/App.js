@@ -1,9 +1,8 @@
 import { useState, useEffect, useRef } from "react";
-
 import "./App.css";
 
 export default function App() {
-  const [numPoints, setNumPoints] = useState(2);
+  const [numberOfPoints, setNumberOfPoints] = useState(2);
   const [points, setPoints] = useState([]);
   const [nextPoint, setNextPoint] = useState(1);
   const [pointSize, setPointSize] = useState(20);
@@ -64,7 +63,7 @@ export default function App() {
         )
       );
 
-      if (number === numPoints) {
+      if (number === numberOfPoints) {
         // Check if last point was clicked
         setStartTimer(false);
         setGameStatus("ALL CLEAR");
@@ -86,7 +85,7 @@ export default function App() {
   const createPoints = () => {
     const newPoints = [];
 
-    while (newPoints.length < numPoints) {
+    while (newPoints.length < numberOfPoints) {
       // Create each point information
       const newPoint = {
         number: newPoints.length + 1,
@@ -123,8 +122,9 @@ export default function App() {
   };
 
   const canvasHandler = (e) => {
-    const rect = canvasRef.current.getBoundingClientRect();
+    const rect = canvasRef.current.getBoundingClientRect(); //Get size & position canvas
 
+    //Measure x & y coordinates of click
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
@@ -155,8 +155,8 @@ export default function App() {
             Points:
             <input
               type="number"
-              value={numPoints}
-              onChange={(e) => setNumPoints(Number(e.target.value))}
+              value={numberOfPoints}
+              onChange={(e) => setNumberOfPoints(Number(e.target.value))}
               min="2"
             />
           </div>
